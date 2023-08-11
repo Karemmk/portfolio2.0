@@ -41,12 +41,12 @@ export const NavBar = () => {
         }}
         className={
           activ === 0
-            ? `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b text-${color}-500`
-            : `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b`
+            ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
+            : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
       >
         <FaHome className="mt-1" />
-        Home
+       Home
       </div>
       <div
         onClick={() => {
@@ -55,8 +55,8 @@ export const NavBar = () => {
         }}
         className={
           activ === 1
-            ? `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b text-${color}-500`
-            : `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b `
+            ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
+            : `flex gap-x-1 ${color[5]} cursor-pointer border-b `
         }
       >
         <IoPersonAddSharp className="mt-1" />
@@ -69,8 +69,8 @@ export const NavBar = () => {
         }}
         className={
           activ === 2
-            ? `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b text-${color}-500`
-            : `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b`
+            ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
+            : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
       >
         <FaListUl className="mt-1" />
@@ -83,8 +83,8 @@ export const NavBar = () => {
         }}
         className={
           activ === 3
-            ? `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b text-${color}-500`
-            : `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b`
+            ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
+            : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
       >
         <FaBriefcase className="mt-1" />
@@ -97,8 +97,8 @@ export const NavBar = () => {
         }}
         className={
           activ === 4
-            ? `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b text-${color}-500`
-            : `flex gap-x-1 hover:text-${color}-500 cursor-pointer border-b`
+            ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
+            : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
       >
         <FaFacebookMessenger className="mt-1" />

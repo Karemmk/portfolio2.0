@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   FaMobileAlt,
@@ -18,6 +18,13 @@ const Services = () => {
   const [isShown6, setIsShown6] = useState(false);
   const dark = useSelector((state) => state.dark.value);
   const color = useSelector((state) => state.theme.value);
+  const [anime, setAnime] = useState("animate-bounce");
+  const info = useSelector((state) => state.info.value);
+
+  
+  useEffect(() => {
+    setAnime("");
+  }, []);
 
   const handleEnterMouse1 = () => {
     setIsShown1(true);
@@ -58,11 +65,11 @@ const Services = () => {
     };
   
   return (
-    <div className="xl:h-screen mt-10 pl-5 relative pb-10">
+    <div className={`xl:h-screen mt-10 pl-5 relative pb-10 ${anime}`}>
       <div>
         <div className="font-bold text-4xl">Services</div>
-        <div className={`border-${color}-500 border-t-8 w-12`}></div>
-        <div className={`border-${color}-500 border-t-8 w-6 mt-1`}></div>
+        <div className={`${color[1]} border-t-8 w-12`}></div>
+        <div className={`${color[1]} border-t-8 w-6 mt-1`}></div>
       </div>
       <div className="mt-20 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div
@@ -77,14 +84,13 @@ const Services = () => {
           <FaMobileAlt
             className={
               isShown1
-                ? ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full bg-${color}-300`
-                : ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full`
+                ? ` h-20 w-20 m-auto ${color[0]} border-none rounded-full ${color[4]}`
+                : ` h-20 w-20 m-auto ${color[0]} border-none rounded-full`
             }
           />
-          <div className="text-center font-bold ">Mobile Application</div>
+          <div className="text-center font-bold ">{info.services[0].mobileicontitle}</div>
           <div className="text-center">
-            Mobile Develope Mobile Develope Mobile DevelopeMobile DevelopeMobile
-            Develope
+          {info.services[0].mobileicondesc}
           </div>
         </div>
 
@@ -101,13 +107,12 @@ const Services = () => {
             className=
             {
               isShown2
-                ? ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full bg-${color}-300`
-                : ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full`
+                ? ` h-20 w-20 m-auto ${color[0]} border-none rounded-full ${color[4]}`
+                : ` h-20 w-20 m-auto ${color[0]} border-none rounded-full`
             }          />
-          <div className="text-center font-bold ">Back-End</div>
+          <div className="text-center font-bold ">{info.services[0].devicontitle}</div>
           <div className="text-center">
-            Mobile Develope Mobile Develope Mobile DevelopeMobile DevelopeMobile
-            Develope
+{info.services[0].devicondesc}            
           </div>
         </div>
 
@@ -124,13 +129,12 @@ const Services = () => {
             className=
             {
               isShown3
-                ? ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full bg-${color}-300`
-                : ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full`
+                ? ` h-20 w-20 m-auto ${color[0]} border-none rounded-full ${color[4]}`
+                : ` h-20 w-20 m-auto ${color[0]} border-none rounded-full`
             }          />
-          <div className="text-center font-bold ">WebApplication</div>
+          <div className="text-center font-bold ">{info.services[0].pcicontitle}</div>
           <div className="text-center">
-            Mobile Develope Mobile Develope Mobile DevelopeMobile DevelopeMobile
-            Develope
+{info.services[0].pcicondesc}            
           </div>
         </div>
 
@@ -147,13 +151,12 @@ const Services = () => {
             className=
             {
               isShown4
-                ? ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full bg-${color}-300`
-                : ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full`
+                ? ` h-20 w-20 m-auto ${color[0]} border-none rounded-full ${color[4]}`
+                : ` h-20 w-20 m-auto ${color[0]} border-none rounded-full`
             }          />
-          <div className="text-center font-bold ">Javascript/Nodejs</div>
+          <div className="text-center font-bold ">{info.services[0].codeicontitle}</div>
           <div className="text-center">
-            Mobile Develope Mobile Develope Mobile DevelopeMobile DevelopeMobile
-            Develope
+{info.services[0].codeicondesc}            
           </div>
         </div>
 
@@ -170,13 +173,12 @@ const Services = () => {
             className=
             {
               isShown5
-                ? ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full bg-${color}-300`
-                : ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full`
+                ? ` h-20 w-20 m-auto ${color[0]} border-none rounded-full ${color[4]}`
+                : ` h-20 w-20 m-auto ${color[0]} border-none rounded-full`
             }          />
-          <div className="text-center font-bold ">Data Analayser</div>
+          <div className="text-center font-bold "> {info.services[0].searchicontitle}</div>
           <div className="text-center">
-            Mobile Develope Mobile Develope Mobile DevelopeMobile DevelopeMobile
-            Develope
+          {info.services[0].searchicondesc}
           </div>
         </div>
 
@@ -193,13 +195,12 @@ const Services = () => {
             className=
             {
               isShown6
-                ? ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full bg-${color}-300`
-                : ` h-20 w-20 m-auto text-${color}-500 border-none rounded-full`
+                ? ` h-20 w-20 m-auto ${color[0]} border-none rounded-full ${color[4]}`
+                : ` h-20 w-20 m-auto ${color[0]} border-none rounded-full`
             }          />
-          <div className="text-center font-bold ">Reactjs/ReactNative</div>
+          <div className="text-center font-bold ">{info.services[0].reacticontitle}</div>
           <div className="text-center">
-            Mobile Develope Mobile Develope Mobile DevelopeMobile DevelopeMobile
-            Develope
+          {info.services[0].reacticondesc}
           </div>
         </div>
       </div>

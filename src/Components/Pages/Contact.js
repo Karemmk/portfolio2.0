@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useRef, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
 import { FaPhoneAlt, FaMailBulk } from "react-icons/fa";
 import { BiWorld, BiCurrentLocation } from "react-icons/bi";
@@ -6,94 +8,171 @@ import { BiWorld, BiCurrentLocation } from "react-icons/bi";
  const Contact = () => {
   const color = useSelector((state) => state.theme.value);
   const dark = useSelector((state) => state.dark.value);
+  const [anime, setAnime] = useState("animate-bounce");
+  const info = useSelector((state) => state.info.value);
+  const form = useRef();
+  const [done, setDone] = useState(false);
+  const [err, seterr] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      user_name: "",
+      user_email: "",
+      user_subject: "",
+      message: ""
+    }
+  });
+
+  const sendEmail = () => {
+    emailjs
+      .sendForm(
+        "service_28p2y33",
+        "template_a00lnzr",
+        form.current,
+        "g-65z4a7AfkvWjq-n"
+      )
+      .then(
+        (result) => {
+          setDone(true);
+          seterr(false);
+          reset();
+          setTimeout(() => setDone(false), 5000);
+        },
+        (error) => {
+          seterr(true);
+          setDone(false);
+        }
+      );
+  };
+  
+  useEffect(() => {
+    setAnime("");
+  }, []);
+  
+  console.log(errors.message)
   return (
-    <div className="sm:h-screen mt-10 pl-5 relative pb-10">
+    <div className={`sm:h-screen w-full mt-10 pl-5 relative pb-10 ${anime}`}>
       <div>
         <div className="font-bold text-4xl">Contact Me</div>
-        <div className={`border-${color}-500 border-t-8 w-12`}></div>
-        <div className={`border-${color}-500 border-t-8 w-6 mt-1`}></div>
+        <div className={`${color[1]} border-t-8 w-12`}></div>
+        <div className={`${color[1]} border-t-8 w-6 mt-1`}></div>
       </div>
       <div>
         <div
-          className={`mt-10 font-bold text-2xl text-${color}-500 text-center`}
+          className={`mt-10 font-bold text-2xl ${color[0]} text-center`}
         >
           Have You Any Questions ?
         </div>
         <div className="text-center mt-3">I'm in your service</div>
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-y-5 gap-x-10">
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-y-5 mr-5">
+        <div className="text-center">
+            <BiWorld className={`w-10 h-10 m-auto ${color[0]}`} />
+            <div className="mt-5 mb-3 font-bold">Website</div>
+            <div  className="text-sm lg:text-md">{info.contact[0].website}</div>
+          </div>
+         
           <div className="text-center">
-            <FaPhoneAlt className={`w-10 h-10 m-auto text-${color}-500`} />
+            <FaPhoneAlt className={`w-10 h-10 m-auto ${color[0]}`} />
             <div className="mt-5 mb-3 font-bold">Call Us On</div>
-            <div>+21697892244</div>
+            <div className="text-sm lg:text-md">{info.contact[0].phone}</div>
           </div>
 
           <div className="text-center">
             <BiCurrentLocation
-              className={`w-10 h-10 m-auto text-${color}-500`}
+              className={`w-10 h-10 m-auto ${color[0]}`}
             />
             <div className="mt-5 mb-3 font-bold">Office</div>
-            <div>+21697892244</div>
+            <div className="text-sm lg:text-md">{info.contact[0].office}</div>
           </div>
 
           <div className="text-center">
-            <FaMailBulk className={`w-10 h-10 m-auto text-${color}-500`} />
+            <FaMailBulk className={`w-10 h-10 m-auto ${color[0]}`} />
             <div className="mt-5 mb-3 font-bold">Email</div>
-            <div>karemmkach@gmail.com</div>
+            <div className="text-sm lg:text-md">{info.contact[0].email}</div>
           </div>
 
-          <div className="text-center">
-            <BiWorld className={`w-10 h-10 m-auto text-${color}-500`} />
-            <div className="mt-5 mb-3 font-bold">Website</div>
-            <div>mkacherkarem.netlify.app</div>
-          </div>
+         
         </div>
 
         <div
-          className={`mt-10 font-bold text-2xl text-${color}-500 text-center`}
+          className={`mt-10 font-bold text-2xl ${color[0]} text-center`}
         >
           How You Send Me Email ?
         </div>
         <div className="text-center mt-3">I'm very respencive to messages</div>
-        <div className="grid mt-10 gap-5 pr-10">
+        <form
+           className="grid mt-10 gap-5 pr-10"
+          ref={form}
+          onSubmit={handleSubmit(sendEmail)}
+        >
           <div className="grid grid-cols-2 gap-5">
-            <input
-              className={
-                dark ? `rounded bg-gray-800 text-${color}-500` : "rounded"
+          <input
+          className={
+                dark ? `rounded bg-gray-800 ${color[0]}` : "rounded"
               }
-              type="text"
-              placeholder="Name"
-            />
-            <input
-              className={
-                dark ? `rounded bg-gray-800 text-${color}-500` : "rounded"
+            type="text"
+            name="user_name"
+            {...register("user_name", { required: "This is required" })}
+           
+            placeholder= "Name"
+           
+          />
+           <input
+           className={
+                dark ? `rounded bg-gray-800 ${color[0]}` : "rounded"
               }
-              type="email"
-              placeholder="Email"
-            />
+            type="email"
+            {...register("user_email", { required: "This is required" })}
+            name="user_email"
+            placeholder="Email"
+           
+          />
+
           </div>
           <input
             className={
-              dark ? `rounded bg-gray-800 text-${color}-500` : "rounded"
+              dark ? `rounded bg-gray-800 ${color[0]}` : "rounded"
             }
+            {...register("user_subject", { required: "This is required" })}
+             name="user_subject"
             type="text"
             placeholder="Subject"
           />
           <input
-            className={
+          
+          className={
               dark
-                ? `h-20 rounded bg-gray-800 text-${color}-500`
+                ? `h-20 rounded bg-gray-800 ${color[0]} `
                 : "h-20 rounded"
             }
-            type="text"
+            type="textarea"
+            {...register("message", { required: "This is required" })}
+            
             placeholder="Message"
+            
           />
+              
           <button
-            className={`w-40  bg-${color}-500 rounded-full p-3 px-4 mt-3`}
+            type="send"
+            value="submit"
+              className={`w-40  ${color[2]} rounded-full p-3 px-4 mt-3 hover:animate-pulse`}
           >
             Send Message
           </button>
-        </div>
+          
+          <div className=" text-green-500">
+            {done? "Thanks for Contacting me":""}
+          </div>
+          <div className=" text-red-600">
+            {" "}
+            {err?  "Email didn't send ,Please try again":""}
+          </div>
+        </form>
       </div>
     </div>
   );

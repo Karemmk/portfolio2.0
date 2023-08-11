@@ -1,42 +1,49 @@
 // Dependencies
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaListAlt } from "react-icons/fa";
 import { BrowserRouter } from "react-router-dom";
 import { RightSide } from "./Components/RightSide";
 import { LeftSide } from "./Components/LeftSide";
-// Styles
-import "./tailwind.output.css";
 import { DarkMode } from "./Components/DarkMode";
 import { Theme } from "./Components/Theme";
-import { useSelector } from "react-redux";
-import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchInfo } from "./Redux/stateSlices/infoSlice";
 
 const App = () => {
+    const [nothing, setNothing] = useState(false);
+  const dispatch = useDispatch();
   const color = useSelector((state) => state.theme.value);
   const [navopen, setNavopen] = useState(false);
   const dark = useSelector((state) => state.dark.value);
+  const info = useSelector((state) => state.info.value);
+
+  useEffect(() => {
+    dispatch(fetchInfo());
+  }, [dispatch]);
+
   const minNav = () => {
     setNavopen(!navopen);
   };
   const colseNav = () => {
-    navopen ? setNavopen(false) : "";
+   navopen? setNavopen(false) : setNothing(false) ;
   };
+
   return (
     <BrowserRouter>
-      <div onClick={colseNav} className="relative  bg-green-500 ">
+      <div onClick={colseNav} className="relative  overflow-hidden ">
         <div className="flex">
           <Theme />
           <DarkMode />
           <FaListAlt
             onClick={minNav}
-            className={`sm:hidden text-${color}-500 hover:text-gray-600 z-40 absolute w-10 h-10 mt-2 ml-3 cursor-pointer`}
+            className={`fixed sm:hidden ${color[0]} hover:text-gray-600 z-40 w-10 h-10 mt-2 ml-3 cursor-pointer`}
           />
           <div
             className={
               navopen
                 ? dark
-                  ? "absolute w-2/4 bg-gray-800 max-h-full-6xl text-gray-200 pt-10 p-10 z-30"
-                  : "absolute max-h-full-6xl bg-white w-2/4 pt-10 p-10 z-30"
+                  ? "fixed w-2/4 bg-gray-800 text-gray-200 pt-10 p-10 z-30"
+                  : "fixed start-0  max-h-lg bg-white w-2/4 pt-10 p-10 z-30"
                 : dark
                 ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
                 : "hidden bg-white sm:w-1/4 sm:inline-block"
@@ -47,11 +54,11 @@ const App = () => {
           <div
             className={
               dark
-                ? "  sm:w-3/4 bg-gray-900 text-gray-200"
-                : " sm:w-3/4 bg-gray-200"
+                ? "overflow-scroll sm:w-3/4 bg-gray-900 text-gray-200 "
+                : "overflow-scroll sm:w-3/4 bg-gray-200"
             }
           >
-            <RightSide />
+            {info ? <RightSide /> : <div></div>}
           </div>
         </div>
       </div>
