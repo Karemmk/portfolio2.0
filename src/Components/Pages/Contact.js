@@ -73,13 +73,13 @@ import { BiWorld, BiCurrentLocation } from "react-icons/bi";
         <div className="text-center">
             <BiWorld className={`w-10 h-10 m-auto ${color[0]}`} />
             <div className="mt-5 mb-3 font-bold">Website</div>
-            <div  className="text-sm lg:text-md">{info.contact[0].website}</div>
+            <div  className="overflow-scroll">{info.contact[0].website}</div>
           </div>
          
           <div className="text-center">
             <FaPhoneAlt className={`w-10 h-10 m-auto ${color[0]}`} />
             <div className="mt-5 mb-3 font-bold">Call Us On</div>
-            <div className="text-sm lg:text-md">{info.contact[0].phone}</div>
+            <div className="ml-3 overflow-scroll">{info.contact[0].phone}</div>
           </div>
 
           <div className="text-center">
@@ -87,13 +87,13 @@ import { BiWorld, BiCurrentLocation } from "react-icons/bi";
               className={`w-10 h-10 m-auto ${color[0]}`}
             />
             <div className="mt-5 mb-3 font-bold">Office</div>
-            <div className="text-sm lg:text-md">{info.contact[0].office}</div>
+            <div className="overflow-scroll">{info.contact[0].office}</div>
           </div>
 
           <div className="text-center">
             <FaMailBulk className={`w-10 h-10 m-auto ${color[0]}`} />
             <div className="mt-5 mb-3 font-bold">Email</div>
-            <div className="text-sm lg:text-md">{info.contact[0].email}</div>
+            <div className="ml-3 overflow-scroll">{info.contact[0].email}</div>
           </div>
 
          
@@ -106,7 +106,7 @@ import { BiWorld, BiCurrentLocation } from "react-icons/bi";
         </div>
         <div className="text-center mt-3">I'm very respencive to messages</div>
         <form
-           className="grid mt-10 gap-5 pr-10"
+           className="grid mt-10 gap-5 pr-5"
           ref={form}
           onSubmit={handleSubmit(sendEmail)}
         >

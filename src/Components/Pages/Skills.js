@@ -5,8 +5,12 @@ const Skills = () => {
   const dark = useSelector((state) => state.dark.value);
   const color = useSelector((state) => state.theme.value);
   const info = useSelector((state) => state.info.value);
-  const [images, setImages] = useState(info.skills[0].images);
+  const [images, setImages] = useState([]);
   const [anime, setAnime] = useState("animate-bounce");
+ 
+ useEffect(() => {
+    setImages(info.skills[0].images);
+  }, []);
  
   useEffect(() => {
     setAnime("");
@@ -14,7 +18,7 @@ const Skills = () => {
   
  
   return (
-    <div className={`mt-10 pl-5 relative pb-10 ${anime}`}>
+    <div className={`mt-10 pl-5 pr-5 relative pb-10 ${anime}`}>
       <div>
         <div className="font-bold text-4xl">Skills</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>

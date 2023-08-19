@@ -1,21 +1,33 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React,{useEffect} from "react";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Skills from "./Pages/Skills";
 import Contact from "./Pages/Contact";
+import { useSelector } from "react-redux";
 
 export const RightSide = () => {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </div>
-  );
+  const activ = useSelector((state)=>state.route.value);
+ 
+
+     switch (activ) {
+  case 0:
+    return (<div><Home/></div>)
+    break;
+  case 1:
+    return (<div><About/></div>)
+    break;
+  case 2:
+    return (<div><Services/></div>)
+    break;
+  case 3:
+    return (<div><Skills/></div>)
+    break;
+  case 4:
+    return (<div><Contact/></div>)
+    break;
+  default:
+    return (<div><Home/></div>)
+}
+
 };

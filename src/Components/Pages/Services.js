@@ -65,7 +65,7 @@ const Services = () => {
     };
   
   return (
-    <div className={`xl:h-screen mt-10 pl-5 relative pb-10 ${anime}`}>
+    <div className={`xl:h-screen mt-10 pl-5 pr-5 relative pb-10 ${anime}`}>
       <div>
         <div className="font-bold text-4xl">Services</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>

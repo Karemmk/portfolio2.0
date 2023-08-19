@@ -1,7 +1,6 @@
 // Dependencies
 import React, { useEffect, useState } from "react";
 import { FaListAlt } from "react-icons/fa";
-import { BrowserRouter } from "react-router-dom";
 import { RightSide } from "./Components/RightSide";
 import { LeftSide } from "./Components/LeftSide";
 import { DarkMode } from "./Components/DarkMode";
@@ -10,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchInfo } from "./Redux/stateSlices/infoSlice";
 
 const App = () => {
-    const [nothing, setNothing] = useState(false);
+  const [nothing, setNothing] = useState(false);
   const dispatch = useDispatch();
   const color = useSelector((state) => state.theme.value);
   const [navopen, setNavopen] = useState(false);
@@ -29,7 +28,6 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
       <div onClick={colseNav} className="relative  overflow-hidden ">
         <div className="flex">
           <Theme />
@@ -62,7 +60,6 @@ const App = () => {
           </div>
         </div>
       </div>
-    </BrowserRouter>
   );
 };
 

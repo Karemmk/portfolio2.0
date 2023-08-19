@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { route } from "../../Redux/stateSlices/routeSlice";
 import Typical from "react-typical";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
   const color = useSelector((state) => state.theme.value);
   const [anime, setAnime] = useState("animate-bounce ease-in-out");
   const info = useSelector((state)=>state.info.value)
@@ -14,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     setAnime("");
   }, []);
-  //console.log(info.home[0].name)
+
   return (
     <div className={`sm:h-screen grid sm:grid-cols-5 mt-10 ${anime}`}>
       <div className=" sm:col-span-3 pl-2">
@@ -40,7 +38,6 @@ const Home = () => {
           <button
             className={`${color[2]} rounded-full p-3 px-4 hover:animate-pulse `}
             onClick={() => {
-              Navigate("/about");
               dispatch(route(1));
             }}
           >

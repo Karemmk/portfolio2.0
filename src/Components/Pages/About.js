@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { route } from "../../Redux/stateSlices/routeSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
@@ -9,20 +8,21 @@ import "../../../node_modules/swiper/swiper-bundle.css";
 
 const About = () => {
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
   const color = useSelector((state) => state.theme.value);
   const [anime, setAnime] = useState("animate-bounce");
   const info = useSelector((state) => state.info.value);
-  const [certif, setCertif] = useState(info.about[0].images);
+  const [certif, setCertif] = useState([]);
   
- 
+ useEffect(() => {
+    setCertif(info.about[0].images);
+  }, [certif]);
   
   useEffect(() => {
     setAnime("");
   }, []);
 
   return (
-    <div className={`sm:h-screen mt-10 pl-5 relative pb-10 ${anime}`}>
+    <div className={`sm:h-screen mt-10 pl-5 pr-5 relative pb-10 ${anime}`}>
       <div>
         <div className="font-bold text-4xl">About Me</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>
@@ -38,7 +38,7 @@ const About = () => {
           <div className="grid grid-cols-2 gap-x-8 gap-5 sm:text-xl ">
             <div className="flex border-gray-300 border-b-2 ">
               <div className="font-bold">Birthday:</div>
-              <div className="ml-1">{info.about[0].birthday}</div>
+              <div className="ml-1 overflow-scroll">{info.about[0].birthday}</div>
             </div>
 
             <div className="flex border-gray-300 border-b-2">
@@ -55,7 +55,7 @@ const About = () => {
 
             <div className="xl:flex border-gray-300 border-b-2 ">
               <div className="font-bold">Email:</div>
-              <div className="text-sm mt-1">{info.about[0].email}</div>
+              <div className="overflow-scroll">{info.about[0].email}</div>
             </div>
 
             <div className="flex border-gray-300 border-b-2 ">
@@ -65,7 +65,7 @@ const About = () => {
 
             <div className="flex border-gray-300 border-b-2 ">
               <div className="font-bold"> Phone:</div>
-              <div className="ml-1">{info.about[0].phone}</div>
+              <div className="ml-1 overflow-scroll">{info.about[0].phone}</div>
             </div>
 
             <div className="flex border-gray-300 border-b-2 ">
@@ -75,7 +75,7 @@ const About = () => {
 
             <div className="flex border-gray-300 border-b-2">
               <div className="font-bold">Freelancer:</div>
-              <div className="ml-1">{info.about[0].freelance}</div>
+              <div className="ml-1 overflow-scroll">{info.about[0].freelance}</div>
             </div>
           </div>
           <div className="flex mt-5 gap-x-3 text-lg">
@@ -94,7 +94,6 @@ const About = () => {
             </a>
             <button
               onClick={() => {
-                Navigate("/contact");
                 dispatch(route(4));
               }}
               className={`${color[2]} rounded-full p-3 px-6 hover:animate-pulse`}
@@ -158,7 +157,6 @@ const About = () => {
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       centeredSlides={true}
         navigation
-        pagination
         loop={true}
         spaceBetween={20}
         breakpoints= {{
@@ -202,7 +200,7 @@ const About = () => {
              </a>
             <div className="mt-2 text-center">Verify:
             <br/>
-            <a className={`t${color[0]}`} 
+            <a className={`${color[0]}`} 
             href={photo.adress} target="_blank" and rel="noopener noreferrer">Link
             </a>
             </div>
