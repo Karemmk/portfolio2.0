@@ -1,14 +1,14 @@
-import React, {useRef, useEffect, useState } from "react";
+import React, {useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
 import { FaPhoneAlt, FaMailBulk } from "react-icons/fa";
 import { BiWorld, BiCurrentLocation } from "react-icons/bi";
+import { motion } from "framer-motion"
 
  const Contact = () => {
   const color = useSelector((state) => state.theme.value);
   const dark = useSelector((state) => state.dark.value);
-  const [anime, setAnime] = useState("animate-bounce");
   const info = useSelector((state) => state.info.value);
   const form = useRef();
   const [done, setDone] = useState(false);
@@ -18,7 +18,7 @@ import { BiWorld, BiCurrentLocation } from "react-icons/bi";
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    
   } = useForm({
     defaultValues: {
       user_name: "",
@@ -50,13 +50,11 @@ import { BiWorld, BiCurrentLocation } from "react-icons/bi";
       );
   };
   
-  useEffect(() => {
-    setAnime("");
-  }, []);
-  
-  console.log(errors.message)
   return (
-    <div className={`sm:h-screen w-full mt-10 pl-5 relative pb-10 ${anime}`}>
+     <motion.div
+     initial={{ x : window.innerWidth }}
+    animate={{ x : 1}}
+    transition={{ duration: 0.5 }} className={`sm:h-screen w-full mt-10 pl-5 relative pb-10 `}>
       <div>
         <div className="font-bold text-4xl">Contact Me</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>
@@ -174,7 +172,7 @@ import { BiWorld, BiCurrentLocation } from "react-icons/bi";
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Contact;

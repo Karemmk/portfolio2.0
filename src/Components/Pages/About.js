@@ -4,25 +4,25 @@ import { route } from "../../Redux/stateSlices/routeSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import "../../../node_modules/swiper/swiper-bundle.css";
-
+import { motion } from "framer-motion"
 
 const About = () => {
   const dispatch = useDispatch();
   const color = useSelector((state) => state.theme.value);
-  const [anime, setAnime] = useState("animate-bounce");
   const info = useSelector((state) => state.info.value);
   const [certif, setCertif] = useState([]);
   
  useEffect(() => {
     setCertif(info.about[0].images);
-  }, [certif]);
+  }, [certif,info.about]);
   
-  useEffect(() => {
-    setAnime("");
-  }, []);
+  
 
   return (
-    <div className={`sm:h-screen mt-10 pl-5 pr-5 relative pb-10 ${anime}`}>
+    <motion.div
+     initial={{ x : window.innerWidth }}
+    animate={{ x : 1}}
+    transition={{ duration: 0.5 }} className={`sm:h-screen mt-10 pl-5 pr-5 relative pb-10 `}>
       <div>
         <div className="font-bold text-4xl">About Me</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>
@@ -174,8 +174,7 @@ const About = () => {
             slidesPerView: 2.5,
         },
     }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+     
     >
       
       {certif.map((photo, index) => (
@@ -212,7 +211,7 @@ const About = () => {
     </Swiper>
 
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default About;

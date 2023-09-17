@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { route } from "../../Redux/stateSlices/routeSlice";
 import Typical from "react-typical";
+import { motion } from "framer-motion"
 
 const Home = () => {
   const dispatch = useDispatch();
   const color = useSelector((state) => state.theme.value);
-  const [anime, setAnime] = useState("animate-bounce ease-in-out");
+
   const info = useSelector((state)=>state.info.value)
 
-  useEffect(() => {
-    setAnime("");
-  }, []);
-
+  
   return (
-    <div className={`sm:h-screen grid sm:grid-cols-5 mt-10 ${anime}`}>
+    <motion.div
+     initial={{ x : window.innerWidth }}
+    animate={{ x : 1}}
+    transition={{ duration: 0.5 }}
+     className={`sm:h-screen grid sm:grid-cols-5 mt-10 `}>
       <div className=" sm:col-span-3 pl-2">
         <div className="grid lg:flex  gap-1 text-md mt-5 sm:mt-20 text-3xl">
           <div>Hello,my name is </div>
@@ -58,7 +60,7 @@ const Home = () => {
           ></div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Home;

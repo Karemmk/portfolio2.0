@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js}"],
-  theme: {
+  
+   variants: {
     extend: {
-      backgroundColor: ["first"]
+      backgroundColor: ['group-hover','hover'],
+     
     }
   },
-  plugins: []
+  
 };

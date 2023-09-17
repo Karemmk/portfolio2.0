@@ -14,8 +14,16 @@ export const NavBar = () => {
   const activ = useSelector((state) => state.route.value);
   const dispatch = useDispatch();
   const routeHandle = (numb) => {
-    dispatch(route(numb));
+  localStorage.setItem('nav',numb);    dispatch(route(parseInt(localStorage.getItem('nav')))); 
   };
+  
+  useEffect(()=>
+   {
+const state=localStorage.getItem('nav') ;
+     state ? dispatch(route(parseInt(localStorage.getItem('nav'))))
+:
+dispatch(route(activ))
+   },[activ,dispatch])
  
 
   return (
@@ -35,7 +43,7 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-          dispatch(route(1));
+           routeHandle(1);
         }}
         className={
           activ === 1
@@ -48,8 +56,8 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-          dispatch(route(2));
-        }}
+           routeHandle(2);
+          }} 
         className={
           activ === 2
             ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
@@ -61,7 +69,7 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-          dispatch(route(3));
+          routeHandle(3);
         }}
         className={
           activ === 3
@@ -74,7 +82,7 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-          dispatch(route(4));
+           routeHandle(4);
         }}
         className={
           activ === 4

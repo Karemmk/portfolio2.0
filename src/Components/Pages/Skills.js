@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion"
 
 const Skills = () => {
   const dark = useSelector((state) => state.dark.value);
   const color = useSelector((state) => state.theme.value);
   const info = useSelector((state) => state.info.value);
   const [images, setImages] = useState([]);
-  const [anime, setAnime] = useState("animate-bounce");
- 
+  
  useEffect(() => {
     setImages(info.skills[0].images);
-  }, []);
+  }, [images,info.skills]);
  
-  useEffect(() => {
-    setAnime("");
-  }, []);
   
  
   return (
-    <div className={`mt-10 pl-5 pr-5 relative pb-10 ${anime}`}>
+     <motion.div
+     initial={{ x : window.innerWidth }}
+    animate={{ x : 1}}
+    transition={{ duration: 0.5 }} className={`mt-10 pl-5 pr-5 relative pb-10 `}>
       <div>
         <div className="font-bold text-4xl">Skills</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>
@@ -53,7 +53,7 @@ const Skills = () => {
           </a>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Skills;

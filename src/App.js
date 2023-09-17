@@ -56,7 +56,7 @@ const App = () => {
                 : "overflow-scroll sm:w-3/4 bg-gray-200"
             }
           >
-            {info ? <RightSide /> : <div></div>}
+            {info ? <RightSide /> : "Loading...."}
           </div>
         </div>
       </div>
