@@ -2,20 +2,24 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { route } from "../../Redux/stateSlices/routeSlice";
 import Typical from "react-typical";
-import { motion } from "framer-motion"
+import { motion,AnimatePresence } from "framer-motion"
+import { useNavigate ,useLocation} from "react-router-dom";
 
 const Home = () => {
+ const navigate = useNavigate();
   const dispatch = useDispatch();
   const color = useSelector((state) => state.theme.value);
-
   const info = useSelector((state)=>state.info.value)
-
+  const location = useLocation();
   
   return (
+  <AnimatePresence >
     <motion.div
-     initial={{ x : window.innerWidth }}
-    animate={{ x : 1}}
-    transition={{ duration: 0.5 }}
+    key={location.pathname}
+    initial={   { x : window.innerWidth } }
+    animate={  { x : 0}  }
+    exit={  { scale : 2}  }
+    transition={{ duration: 0.9 }}
      className={`sm:h-screen grid sm:grid-cols-5 mt-10 `}>
       <div className=" sm:col-span-3 pl-2">
         <div className="grid lg:flex  gap-1 text-md mt-5 sm:mt-20 text-3xl">
@@ -40,7 +44,7 @@ const Home = () => {
           <button
             className={`${color[2]} rounded-full p-3 px-4 hover:animate-pulse `}
             onClick={() => {
-              dispatch(route(1));
+              navigate("/about");
             }}
           >
             More about me
@@ -61,6 +65,7 @@ const Home = () => {
         </div>
       </div>
     </motion.div>
+      </AnimatePresence>
   );
 };
 export default Home;

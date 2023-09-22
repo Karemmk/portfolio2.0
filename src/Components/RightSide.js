@@ -4,36 +4,21 @@ import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Skills from "./Pages/Skills";
 import Contact from "./Pages/Contact";
-import { useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 
 export const RightSide = () => {
-  const activ = useSelector((state)=>state.route.value);
-  const [state, setState] = useState();
+
   
-  useEffect(()=>
-   {
-    setState(parseInt(localStorage.getItem('nav')))
 
-   },[activ])
-
-     switch (state) {
-  case 0:
-    return (<div><Home/></div>)
-    break;
-  case 1:
-    return (<div><About/></div>)
-    break;
-  case 2:
-    return (<div><Services/></div>)
-    break;
-  case 3:
-    return (<div><Skills/></div>)
-    break;
-  case 4:
-    return (<div><Contact/></div>)
-    break;
-  default:
-    return (<div><Home/></div>)
-}
-
+  return (
+     <div>
+      <Routes>
+        <Route  path="/" element={<Home />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/services" element={<Services />} />
+        <Route exact path="/skills" element={<Skills />} />
+        <Route exact path="/conctact" element={<Contact />} />
+      </Routes>
+     </div> 
+  )
 };

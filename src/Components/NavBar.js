@@ -6,34 +6,24 @@ import {
   FaFacebookMessenger
 } from "react-icons/fa";
 import { IoPersonAddSharp } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
-import { route } from "../Redux/stateSlices/routeSlice";
+import {  useSelector } from "react-redux";
+import { useNavigate,useLocation} from "react-router-dom";
 
 export const NavBar = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const color = useSelector((state) => state.theme.value);
-  const activ = useSelector((state) => state.route.value);
-  const dispatch = useDispatch();
-  const routeHandle = (numb) => {
-  localStorage.setItem('nav',numb);    dispatch(route(parseInt(localStorage.getItem('nav')))); 
-  };
-  
-  useEffect(()=>
-   {
-const state=localStorage.getItem('nav') ;
-     state ? dispatch(route(parseInt(localStorage.getItem('nav'))))
-:
-dispatch(route(activ))
-   },[activ,dispatch])
  
+  
 
   return (
     <div className="grid gap-3 bg-none">
       <div
         onClick={() => {
-          routeHandle(0);
+          navigate("/")
         }}
         className={
-          activ === 0
+             location.pathname === "/"
             ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
             : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
@@ -43,10 +33,10 @@ dispatch(route(activ))
       </div>
       <div
         onClick={() => {
-           routeHandle(1);
+          navigate("/about")
         }}
         className={
-          activ === 1
+          location.pathname === "/about"
             ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
             : `flex gap-x-1 ${color[5]} cursor-pointer border-b `
         }
@@ -56,10 +46,10 @@ dispatch(route(activ))
       </div>
       <div
         onClick={() => {
-           routeHandle(2);
+           navigate("/services");
           }} 
         className={
-          activ === 2
+          location.pathname === "/services"
             ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
             : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
@@ -69,10 +59,10 @@ dispatch(route(activ))
       </div>
       <div
         onClick={() => {
-          routeHandle(3);
+          navigate("/skills")
         }}
         className={
-          activ === 3
+          location.pathname === "/skills"
             ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
             : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
@@ -82,10 +72,10 @@ dispatch(route(activ))
       </div>
       <div
         onClick={() => {
-           routeHandle(4);
+          navigate("/conctact")
         }}
         className={
-          activ === 4
+          location.pathname === "/contact"
             ? `flex gap-x-1 ${color[5]} cursor-pointer border-b ${color[0]}`
             : `flex gap-x-1 ${color[5]} cursor-pointer border-b`
         }
