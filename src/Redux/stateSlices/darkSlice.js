@@ -8,8 +8,8 @@ export const darkSlice = createSlice({
   name: "darkSlice",
   initialState,
   reducers: {
-    darkMode: (state) => {
-      state.value = !state.value;
+    darkMode: (state,action) => {
+      state.value = action.payload;
     }
   }
 });

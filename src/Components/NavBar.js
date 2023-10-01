@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   FaHome,
   FaListUl,
@@ -14,13 +14,12 @@ export const NavBar = () => {
   const navigate = useNavigate()
   const color = useSelector((state) => state.theme.value);
  
-  
-
   return (
     <div className="grid gap-3 bg-none">
       <div
         onClick={() => {
-          navigate("/")
+          navigate(`/`)
+
         }}
         className={
              location.pathname === "/"
@@ -33,7 +32,7 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-          navigate("/about")
+          navigate(`/about`)
         }}
         className={
           location.pathname === "/about"
@@ -46,7 +45,7 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-           navigate("/services");
+        navigate(`/services`)
           }} 
         className={
           location.pathname === "/services"
@@ -59,7 +58,7 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-          navigate("/skills")
+          navigate(`/skills`)
         }}
         className={
           location.pathname === "/skills"
@@ -72,7 +71,7 @@ export const NavBar = () => {
       </div>
       <div
         onClick={() => {
-          navigate("/conctact")
+        navigate(`/contact`)
         }}
         className={
           location.pathname === "/contact"

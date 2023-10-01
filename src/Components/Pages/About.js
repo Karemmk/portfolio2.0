@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { route } from "../../Redux/stateSlices/routeSlice";
+import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import "../../../node_modules/swiper/swiper-bundle.css";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useNavigate ,useLocation } from "react-router-dom";
 
 const About = () => {
-  const dispatch = useDispatch();
+  const location = useLocation(); 
+  const navigate = useNavigate();
   const color = useSelector((state) => state.theme.value);
   const info = useSelector((state) => state.info.value);
   const [certif, setCertif] = useState([]);
@@ -20,9 +21,12 @@ const About = () => {
 
   return (
     <motion.div
+     key={location.pathname}
+     exit={  {x : -window.innerWidth} }
      initial={{ x : window.innerWidth }}
-    animate={{ x : 1}}
-    transition={{ duration: 0.5 }} className={`sm:h-screen mt-10 pl-5 pr-5 relative pb-10 `}>
+     animate={{ x : 1}}
+     transition={{ duration: 1 }} 
+     className={`mt-10 pl-5 pr-5 relative pb-10 `}>
       <div>
         <div className="font-bold text-4xl">About Me</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>
@@ -80,7 +84,7 @@ const About = () => {
           </div>
           <div className="flex mt-5 gap-x-3 text-lg">
             <a
-              href={info.about[0].cv}
+              href={info.about[0].cv_tu}
               target="_blank"
               and
               rel="noopener noreferrer"
@@ -94,7 +98,7 @@ const About = () => {
             </a>
             <button
               onClick={() => {
-                dispatch(route(4));
+                navigate("/contact");
               }}
               className={`${color[2]} rounded-full p-3 px-6 hover:animate-pulse`}
             >

@@ -1,15 +1,45 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { themeMode } from "../Redux/stateSlices/themeSlice";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { darkMode } from "../Redux/stateSlices/darkSlice";
+import { useSearchParams ,useLocation } from "react-router-dom";
 
 export const DarkMode = () => {
+  const location = useLocation(); 
   const color = useSelector((state) => state.theme.value[0]);
   const dispatch = useDispatch();
   const dark = useSelector((state) => state.dark.value);
+  const [searchParams, setSearchParams] = useSearchParams({dark:`${dark}`});
+  const darks = searchParams.get("dark") === "true";
+
+    
+  
+  useEffect(()=>{
+    if(!darks ){
+        dispatch(darkMode(dark));
+        setSearchParams(prev =>{ prev.set("dark" , dark)
+  return prev
+  });
+        }
+        else{dispatch(darkMode(darks));
+                  setSearchParams(prev =>{ prev.set("dark" , darks)
+  return prev
+  });
+  }
+ 
+  },[location.search])
+  
+  
+  
   const handleClick = () => {
-    dispatch(darkMode());
+    setSearchParams(prev =>{ prev.set("dark" , !darks)
+  return prev
+  });
+    const somb=!dark
+    dispatch(darkMode(somb));
   };
+  
   return (
     <div
       onClick={handleClick}

@@ -7,7 +7,7 @@ export const LeftSide = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1  sm:gap-40 mt-8 justify-items-center ">
+      <div className="md:h-full grid grid-cols-1  sm:gap-40 mt-8 justify-items-center ">
         <div className="flex font-bold font-9">
           <div
             className={`w-5 h-5 ${color}  border-t-8 border-l-8 `}

@@ -7,15 +7,19 @@ import { DarkMode } from "./Components/DarkMode";
 import { Theme } from "./Components/Theme";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchInfo } from "./Redux/stateSlices/infoSlice";
+import { motion } from "framer-motion";
+import { useNavigate ,useLocation,useSearchParams} from "react-router-dom";
+import { themeMode } from "./Redux/stateSlices/themeSlice";
 
 const App = () => {
+  const location = useLocation();
   const [nothing, setNothing] = useState(false);
   const dispatch = useDispatch();
   const color = useSelector((state) => state.theme.value);
   const [navopen, setNavopen] = useState(false);
   const dark = useSelector((state) => state.dark.value);
   const info = useSelector((state) => state.info.value);
-
+ 
   useEffect(() => {
     dispatch(fetchInfo());
   }, [dispatch]);
@@ -28,7 +32,10 @@ const App = () => {
   };
 
   return (
-      <div onClick={colseNav} className="relative  overflow-hidden ">
+      <div 
+      location={location}
+      onClick={colseNav} 
+      className="relative no-scrollbar h-[100vh]">
         <div className="flex">
           <Theme />
           <DarkMode />
@@ -36,27 +43,33 @@ const App = () => {
             onClick={minNav}
             className={`fixed sm:hidden ${color[0]} hover:text-gray-600 z-40 w-10 h-10 mt-2 ml-3 cursor-pointer`}
           />
-          <div
+          <motion.div
+            key= "nav"
+            initial={   { width : 0 } }
+            whileInView={ navopen? { width : 200} : { width : 400}  }
+            exit={  {width : 0} }
+            transition={{ duration: 0.5 }}
             className={
               navopen
                 ? dark
-                  ? "fixed w-2/4 bg-gray-800 text-gray-200 pt-10 p-10 z-30"
-                  : "fixed start-0  max-h-lg bg-white w-2/4 pt-10 p-10 z-30"
+                  ? "fixed  w-2/4 bg-gray-800 text-gray-200 pt-10 p-10 z-30"
+                  : "fixed  start-0  bg-white w-2/4 pt-10 p-10 z-30"
                 : dark
                 ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
                 : "hidden bg-white sm:w-1/4 sm:inline-block"
             }
           >
             <LeftSide onclick={() => setNavopen(false)} />
-          </div>
-          <div
+          </motion.div>
+            <div
             className={
               dark
-                ? "overflow-scroll sm:w-3/4 bg-gray-900 text-gray-200 "
-                : "overflow-scroll sm:w-3/4 bg-gray-200"
+                ? "h-full overflow-hidden sm:w-3/4 bg-gray-900 text-gray-200 "
+                : "h-full overflow-hidden sm:w-3/4 bg-gray-200 pb-20"
             }
           >
-            {info ? <RightSide /> : "Loading...."}
+          
+          {info ? <RightSide /> : <div className="fixed font-bold ml-[40%] mt-[20%]">Loading ...</div>}
           </div>
         </div>
       </div>

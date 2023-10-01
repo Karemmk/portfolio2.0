@@ -8,14 +8,15 @@ import {
   FaSearchengin
 } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const Services = () => {
   const [isShown1, setIsShown1] = useState(false);
   const [hove, setHove] = useState();
   const dark = useSelector((state) => state.dark.value);
   const color = useSelector((state) => state.theme.value);
-  
+  const location = useLocation(); 
   const info = useSelector((state) => state.info.value);
 
   const icons = [
@@ -62,9 +63,12 @@ const Services = () => {
   
   return (
     <motion.div
+     key={location.pathname}
+     exit={  {x : -window.innerWidth} }
      initial={{ x : window.innerWidth }}
     animate={{ x : 1}}
-    transition={{ duration: 0.5 }} className={`xl:h-screen mt-10 pl-5 pr-5 relative pb-10 `}>
+    transition={{ duration: 1 }} 
+    className={`mt-10 pl-5 pr-5 relative pb-10 `}>
       <div>
         <div className="font-bold text-4xl">Services</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const Skills = () => {
+  const location = useLocation(); 
   const dark = useSelector((state) => state.dark.value);
   const color = useSelector((state) => state.theme.value);
   const info = useSelector((state) => state.info.value);
@@ -16,9 +18,12 @@ const Skills = () => {
  
   return (
      <motion.div
+      key={location.pathname}
+     exit={  {x : -window.innerWidth} }
      initial={{ x : window.innerWidth }}
     animate={{ x : 1}}
-    transition={{ duration: 0.5 }} className={`mt-10 pl-5 pr-5 relative pb-10 `}>
+    transition={{ duration: 1 }} 
+    className={` mt-10 pl-5 pr-5 relative pb-10 `}>
       <div>
         <div className="font-bold text-4xl">Skills</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>

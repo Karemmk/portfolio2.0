@@ -4,9 +4,11 @@ import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
 import { FaPhoneAlt, FaMailBulk } from "react-icons/fa";
 import { BiWorld, BiCurrentLocation } from "react-icons/bi";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
  const Contact = () => {
+  const location = useLocation(); 
   const color = useSelector((state) => state.theme.value);
   const dark = useSelector((state) => state.dark.value);
   const info = useSelector((state) => state.info.value);
@@ -52,9 +54,12 @@ import { motion } from "framer-motion"
   
   return (
      <motion.div
+     key={location.pathname}
+     exit={  {x : -window.innerWidth} }
      initial={{ x : window.innerWidth }}
     animate={{ x : 1}}
-    transition={{ duration: 0.5 }} className={`sm:h-screen w-full mt-10 pl-5 relative pb-10 `}>
+    transition={{ duration: 1 }} 
+    className={`mt-10 pl-5 relative pb-10 `}>
       <div>
         <div className="font-bold text-4xl">Contact Me</div>
         <div className={`${color[1]} border-t-8 w-12`}></div>

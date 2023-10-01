@@ -4,21 +4,27 @@ import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Skills from "./Pages/Skills";
 import Contact from "./Pages/Contact";
-import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes , Route ,useLocation ,useSearchParams } from "react-router-dom";
+import { AnimatePresence } from "framer-motion"
 
 export const RightSide = () => {
-
+  const color = useSelector((state) => state.theme.value[0]);
+  const location = useLocation();
   
 
   return (
      <div>
-      <Routes>
-        <Route  path="/" element={<Home />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/services" element={<Services />} />
-        <Route exact path="/skills" element={<Skills />} />
-        <Route exact path="/conctact" element={<Contact />} />
-      </Routes>
+      <AnimatePresence>
+       <Routes location={location} key={location.pathname}>
+        <Route  path="" element={<Home />} />
+        <Route  path="about" element={<About />} />
+        <Route  path="services" element={<Services />} />
+        <Route  path="skills" element={<Skills />} />
+        <Route  path="contact" element={<Contact />} />
+        <Route  path="*" element={<Home />} />        
+       </Routes>
+       </AnimatePresence>
      </div> 
   )
 };
