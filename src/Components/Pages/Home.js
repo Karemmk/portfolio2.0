@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Typical from "react-typical";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import { useNavigate ,useLocation} from "react-router-dom";
 
 const Home = () => {
@@ -28,10 +27,7 @@ const Home = () => {
         <div className="flex gap-1 mt-5 font-bold text-3xl">
           <div className="mr-1">I'm a </div>
           <div className={`${color[0]} font-bold`}>
-            <Typical
-              loop={Infinity}
-              steps={[1000, "Full-Stack", 1000, "Web-Developer", 1000]}
-            />
+             Full-Stack Web-Developer
           </div>
         </div>
         <div className="mt-5 sm:mt-15 text-[30px] text-xl">
