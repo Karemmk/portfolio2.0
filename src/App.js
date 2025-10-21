@@ -19,7 +19,33 @@ const App = () => {
   const [navopen, setNavopen] = useState(false);
   const dark = useSelector((state) => state.dark.value);
   const info = useSelector((state) => state.info.value);
- 
+
+useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Block F5 or Ctrl+R
+      if (e.key === "F5" || (e.ctrlKey && e.key === "r")) {
+        e.preventDefault();
+        alert("Refreshing is disabled on this site.");
+      }
+    };
+
+    const handleBeforeUnload = (e) => {
+      // Warn user before leaving or reloading
+      e.preventDefault();
+      e.returnValue = ""; // Required for Chrome
+    };
+
+    // Attach events
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Cleanup when component unmounts
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+  
   useEffect(() => {
     dispatch(fetchInfo());
   }, [dispatch]);
