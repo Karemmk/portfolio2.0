@@ -30,18 +30,21 @@ export const Theme = () => {
    else 
    if(colore!=='blue' || colore!=='pink' || colore!=='green' || colore!=='red' || colore!=='purple' || colore!=='yellow' || !colore )
    {
-       dispatch(themeMode([
+       dispatch(themeMode(color))
+  setSearchParams(prev =>{ prev.set("color" , `${color[0].slice(5,(color[0].length)-4)}`)
+  return prev
+  });
+     }
+     else
+   {      
+    dispatch(themeMode([
   "text-blue-500",
   "border-blue-500",
   "bg-blue-500",
   "hover:bg-blue-300",
   "bg-blue-300",
   "hover:text-blue-500"]))
-  setSearchParams(prev =>{ prev.set("color" , `${color[0].slice(5,(color[0].length)-4)}`)
-  return prev
-  });
-     }
-    
+   }
   },[location.search,colore])
     
  
