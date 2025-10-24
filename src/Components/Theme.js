@@ -35,6 +35,13 @@ export const Theme = () => {
   return prev
   });
      }
+     else 
+   {
+  dispatch(themeMode(colorHandle(["text-blue-500","border-blue-500","bg-blue-500","hover:bg-blue-300","bg-blue-300","hover:text-blue-500"]))
+  setSearchParams(prev =>{ prev.set("color" , "blue")
+  return prev
+  });
+     }
     
   },[location.search,colore])
     
