@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value:[
-  "text-blue-500",
-  "border-blue-500",
-  "bg-blue-500",
-  "hover:bg-blue-300",
-  "bg-blue-300",
-  "hover:text-blue-500"]
+  value:[]
 };
 
 export const themeSlice = createSlice({
