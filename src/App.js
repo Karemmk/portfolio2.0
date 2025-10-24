@@ -36,7 +36,7 @@ const App = () => {
       <div 
       location={location}
       onClick={colseNav} 
-      className="relative no-scrollbar h-[100vh]">
+      className="relative no-scrollbar h-screen">
         <div className="flex">
           <Theme />
           <DarkMode />
