@@ -30,7 +30,7 @@ export const Theme = () => {
    else 
    if(colore!=='blue' || colore!=='pink' || colore!=='green' || colore!=='red' || colore!=='purple' || colore!=='yellow' || !colore )
    {
-       dispatch(themeMode(color))
+      // dispatch(themeMode(color))
   setSearchParams(prev =>{ prev.set("color" , `${color[0].slice(5,(color[0].length)-4)}`)
   return prev
   });
