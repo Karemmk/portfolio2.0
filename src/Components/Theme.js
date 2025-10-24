@@ -12,7 +12,7 @@ export const Theme = () => {
   const location = useLocation(); 
   const dark = useSelector((state) => state.dark.value);
   const [searchParams, setSearchParams] = useSearchParams();
-  const colore = searchParams.get("color") || "blue";
+  const colore = searchParams.get("color") ;
   const isopen = useSelector((state) => state.isopen.value);
   const dispatch = useDispatch();
   const handleClick = () => {
