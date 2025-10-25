@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSearchParams } from "react-router-dom";
 
+  const [searchParams, setSearchParams] = useSearchParams();
 const colore = searchParams.get("color") ;
 const initialState = {
   value:[`text-${colore}-500`,
