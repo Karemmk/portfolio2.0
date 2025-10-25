@@ -21,29 +21,16 @@ export const Theme = () => {
    useEffect(() => {
     if (!searchParams.get("color")) {
       setSearchParams({ color: "blue" });
-    }
-  }, []);
-
-  useEffect(()=>{
-   if(colore==='blue' || colore==='pink' || colore==='green' || colore==='red' || colore==='purple' || colore==='yellow' )
+       else
+    if(colore==='blue' || colore==='pink' || colore==='green' || colore==='red' || colore==='purple' || colore==='yellow' )
         {
-  dispatch(themeMode([`text-${colore}-500`,`border-${colore}-500`,`bg-${colore}-500`,`hover:bg-${colore}-300`,`bg-${colore}-300`,`hover:text-${colore}-500`]))  
+        dispatch(themeMode([`text-${colore}-500`,`border-${colore}-500`,`bg-${colore}-500`,`hover:bg-${colore}-300`,`bg-${colore}-300`,`hover:text-${colore}-500`]))  
         setSearchParams(prev =>{ prev.set("color" , colore)
   return prev
-  });
+         });
     }
-   else 
-   if(colore!=='blue' || colore!=='pink' || colore!=='green' || colore!=='red' || colore!=='purple' || colore!=='yellow' )
-   {
-  dispatch(themeMode(color))
-  setSearchParams(prev =>{ prev.set("color" , `${color[0].slice(5,(color[0].length)-4)}`)
-  return prev
-  });
-     }
-  },[location.search,colore])
-    
- 
-  
+  }, [location.search,colore]);
+
   const colorHandle = (colors,coulor) => {
  setSearchParams(prev =>{ prev.set("color" , coulor)
   return prev
