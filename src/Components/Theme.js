@@ -22,7 +22,7 @@ export const Theme = () => {
     if (!searchParams.get("color")) {
       setSearchParams({ color: "blue" });
     }
-  }, [searchParams, setSearchParams]);
+  }, []);
 
   useEffect(()=>{
    if(colore==='blue' || colore==='pink' || colore==='green' || colore==='red' || colore==='purple' || colore==='yellow' )
