@@ -1,4 +1,4 @@
-React from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { useNavigate ,useLocation} from "react-router-dom";
