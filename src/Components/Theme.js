@@ -19,11 +19,17 @@ export const Theme = () => {
     dispatch(isOpen());
   };
    useEffect(() => {
-    if (!searchParams.get("color") && color===[]) {
+    if (!searchParams.get("color") ) {
       setSearchParams(prev =>{ prev.set("color" , "blue")
   return prev
          });
-       dispatch(themeMode([`text-${colore}-500`,`border-${colore}-500`,`bg-${colore}-500`,`hover:bg-${colore}-300`,`bg-${colore}-300`,`hover:text-${colore}-500`]))
+       dispatch(themeMode(
+          [`text-blue-500`,
+           `border-blue-500`,
+           `bg-blue-500`,
+           `hover:bg-blue-300`,
+           `bg-blue-300`,
+           `hover:text-blue-500`]))
     }
        else
     {
@@ -35,6 +41,14 @@ export const Theme = () => {
          });
     }
        }
+      else
+      {
+         dispatch(themeMode(color));
+         setSearchParams(prev =>{ prev.set("color" , color[0].split("-")[1])
+  return prev
+         });
+         
+      }
   }, [location.search,colore,location.pathname]);
 
   const colorHandle = (colors,coulor) => {
