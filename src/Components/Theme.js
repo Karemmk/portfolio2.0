@@ -35,7 +35,7 @@ export const Theme = () => {
          });
     }
        }
-  }, [location.search,colore]);
+  }, [location.search,colore,location.pathname]);
 
   const colorHandle = (colors,coulor) => {
  setSearchParams(prev =>{ prev.set("color" , coulor)
