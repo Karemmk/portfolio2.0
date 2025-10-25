@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useSearchParams } from "react-router-dom";
 
+const colore = searchParams.get("color") ;
 const initialState = {
-  value:["text-blue-500",
-         "border-blue-500",
-         "bg-blue-500",
-         "hover:bg-blue-300",
-         "bg-blue-300",
-         "hover:text-blue-500"]
+  value:[`text-${colore}-500`,
+         `border-${colore}-500`,
+         `bg-${colore}-500`,
+         `hover:bg-${colore}-300`,
+         `bg-${colore}-300`,
+         `hover:text-${colore}-500`
+         ]
 };
 
 export const themeSlice = createSlice({
