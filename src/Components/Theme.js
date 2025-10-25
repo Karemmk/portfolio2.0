@@ -21,6 +21,7 @@ export const Theme = () => {
    useEffect(() => {
     if (!searchParams.get("color")) {
       setSearchParams({ color: "blue" })
+      dispatch(themeMode([`text-${colore}-500`,`border-${colore}-500`,`bg-${colore}-500`,`hover:bg-${colore}-300`,`bg-${colore}-300`,`hover:text-${colore}-500`]))  
     }
        else
     {
