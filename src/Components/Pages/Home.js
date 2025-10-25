@@ -1,4 +1,4 @@
-import React from "react";
+j React from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { useNavigate ,useLocation} from "react-router-dom";
@@ -16,7 +16,7 @@ const Home = () => {
     animate={  { x : 0}  }
     exit={  {x : -window.innerWidth} }
     transition={{ duration: 1 }}
-     className={`h-full grid sm:grid-cols-5 mt-10 `}>
+     className={`h-screen w-full grid sm:grid-cols-5 mt-10 `}>
       <div className=" sm:col-span-3 pl-2">
         <div className="grid lg:flex  gap-1 text-md mt-5 sm:mt-20 text-3xl">
           <div>Hello,my name is </div>
