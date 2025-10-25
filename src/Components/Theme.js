@@ -19,10 +19,11 @@ export const Theme = () => {
     dispatch(isOpen());
   };
    useEffect(() => {
-    if (!searchParams.get("color") && !color) {
+    if (!searchParams.get("color") && color===[]) {
       setSearchParams(prev =>{ prev.set("color" , "blue")
   return prev
          });
+       dispatch(themeMode([`text-${colore}-500`,`border-${colore}-500`,`bg-${colore}-500`,`hover:bg-${colore}-300`,`bg-${colore}-300`,`hover:text-${colore}-500`]))
     }
        else
     {
