@@ -21,12 +21,17 @@ export const Theme = () => {
   };
   
   useEffect(() => {
+  conuseEffect(() => {
   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
-  const colorParam = searchParams.get("color");
+  const colorParam = colore;
+  const currentColor = color[0]?.split("-")[1] || "blue";
 
-  // ✅ If there's no color in the URL, set blue and apply it
+  // ✅ Case 1: no color param → set default blue
   if (!colorParam) {
-    setSearchParams({ color: "blue" });
+    setSearchParams(prev => {
+      prev.set("color", "blue");
+      return prev;
+    });
     dispatch(themeMode([
       "text-blue-500",
       "border-blue-500",
@@ -38,7 +43,7 @@ export const Theme = () => {
     return;
   }
 
-  // ✅ If color is valid → apply it
+  // ✅ Case 2: valid color param → apply it
   if (validColors.includes(colorParam)) {
     dispatch(themeMode([
       `text-${colorParam}-500`,
@@ -48,23 +53,25 @@ export const Theme = () => {
       `bg-${colorParam}-300`,
       `hover:text-${colorParam}-500`
     ]));
-  } 
-  
-  // ❌ If invalid color → revert to previous or blue
+  }
+
+  // ❌ Case 3: invalid color param → revert to previous valid color
   else {
-    const previousColor = color[0]?.split("-")[1] || "blue";
-    setSearchParams({ color: previousColor });
+    setSearchParams(prev => {
+      prev.set("color", currentColor);
+      return prev;
+    });
     dispatch(themeMode([
-      `text-${previousColor}-500`,
-      `border-${previousColor}-500`,
-      `bg-${previousColor}-500`,
-      `hover:bg-${previousColor}-300`,
-      `bg-${previousColor}-300`,
-      `hover:text-${previousColor}-500`
+      `text-${currentColor}-500`,
+      `border-${currentColor}-500`,
+      `bg-${currentColor}-500`,
+      `hover:bg-${currentColor}-300`,
+      `bg-${currentColor}-300`,
+      `hover:text-${currentColor}-500`
     ]));
   }
-}, [location.pathname,colore,searchParams]); // only re-run on route change
-   
+}, [location.pathname,location.search,colore]); // run on route changes
+     
      const colorHandle = (colors,coulor) => {
  setSearchParams(prev =>{ prev.set("color" , coulor)
   return prev
