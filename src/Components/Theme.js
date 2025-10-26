@@ -15,6 +15,10 @@ export const Theme = () => {
   const colore = searchParams.get("color") ;
   const isopen = useSelector((state) => state.isopen.value);
   const dispatch = useDispatch();
+   
+  const handleClick =()=>{
+     dispatch(isOpen())
+  };
   
   useEffect(() => {
   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
@@ -43,7 +47,15 @@ export const Theme = () => {
     setSearchParams({ color: currentColor });
   }
 }, [colore, dispatch]);
-  
+
+     const colorHandle = (colors,coulor) => {
+ setSearchParams(prev =>{ prev.set("color" , coulor)
+  return prev
+  });
+    dispatch(themeMode(colors))
+
+  };
+   
    return (
     <div onClick={handleClick}>
       {isopen ? (
