@@ -17,10 +17,11 @@ export const Theme = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
-   const colorParam = searchParams.get("color");
+  const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
+  const colorParam = colore;
+  const currentColor = color[0]?.split("-")[1] || "blue";
 
-  // ✅ If URL color is valid → set it in Redux
+  // ✅ Case 1: valid color in URL → apply it
   if (validColors.includes(colorParam)) {
     dispatch(themeMode([
       `text-${colorParam}-500`,
@@ -32,47 +33,16 @@ export const Theme = () => {
     ]));
   }
 
-  // 🌀 If URL has no color → set default blue
+  // 🌀 Case 2: no color param → keep current or set blue
   else if (!colorParam) {
-    setSearchParams({ color: "blue" });
-    dispatch(themeMode([
-      `text-blue-500`,
-      `border-blue-500`,
-      `bg-blue-500`,
-      `hover:bg-blue-300`,
-      `bg-blue-300`,
-      `hover:text-blue-500`
-    ]));
+    setSearchParams({ color: currentColor });
   }
 
-  // ❌ If URL has invalid color → fallback to previous valid color
+  // ❌ Case 3: invalid color → revert to previous one
   else if (!validColors.includes(colorParam)) {
-    const prevColor = color[0]?.split("-")[1] || "blue";
-    setSearchParams({ color: prevColor });
-    dispatch(themeMode([
-      `text-${prevColor}-500`,
-      `border-${prevColor}-500`,
-      `bg-${prevColor}-500`,
-      `hover:bg-${prevColor}-300`,
-      `bg-${prevColor}-300`,
-      `hover:text-${prevColor}-500`
-    ]));
+    setSearchParams({ color: currentColor });
   }
-
-  // ✅ Keep color param across route changes
-  // if you use `react-router-dom`, this ensures it persists
 }, [colore, dispatch]);
-   
-  const handleClick = () => {
-    dispatch(isOpen());
-  }; 
-   
-  const colorHandle = (colors,coulor) => {
- setSearchParams(prev =>{ prev.set("color" , coulor)
-  return prev
-  });
-    dispatch(themeMode(colors))
-    };
   
    return (
     <div onClick={handleClick}>
