@@ -42,13 +42,16 @@ export const Theme = () => {
     }
        }
       else
-      {
          dispatch(themeMode(color));
-         setSearchParams(prev =>{ prev.set("color" , color[0].split("-")[1])
-  return prev
-         });
+         setSearchParams(
+          prev =>
+          {
+         prev.set("color" , color[0].split("-")[1])
+         return prev
+          }
+         );
          
-      }
+      
   }, [location.search,colore,location.pathname]);
 
   const colorHandle = (colors,coulor) => {
