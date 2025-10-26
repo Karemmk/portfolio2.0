@@ -16,7 +16,8 @@ const Home = () => {
     animate={  { x : 0}  }
     exit={  {x : -window.innerWidth} }
     transition={{ duration: 1 }}
-     className="h-screen grid sm:grid-cols-5 mt-10 ">
+    className="relative mt-10 ">
+     <div className="grid sm:grid-cols-5">
       <div className=" sm:col-span-3 pl-2">
         <div className="grid lg:flex  gap-1 text-md mt-5 sm:mt-20 text-3xl">
           <div>Hello,my name is </div>
@@ -57,6 +58,7 @@ const Home = () => {
           ></div>
         </div>
       </div>
+     </div>
     </motion.div>
 
   );
