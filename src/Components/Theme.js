@@ -22,7 +22,7 @@ export const Theme = () => {
   
   useEffect(() => {
   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
-  const colorParam = colore;
+  const colorParam = searchParams.get("color");
   const currentColor = color[0]?.split("-")[1] || "blue";
 
   // ✅ Case 1: valid color in URL → apply it
@@ -37,16 +37,22 @@ export const Theme = () => {
     ]));
   }
 
-  // 🌀 Case 2: no color param → keep current or set blue
+  // 🌀 Case 2: no color param → keep or set to current color
   else if (!colorParam) {
-    setSearchParams({ color: currentColor });
+    setSearchParams(prev => {
+      prev.set("color", currentColor);
+      return prev;
+    });
   }
 
-  // ❌ Case 3: invalid color → revert to previous one
+  // ❌ Case 3: invalid color → revert to current color
   else if (!validColors.includes(colorParam)) {
-    setSearchParams({ color: currentColor });
+    setSearchParams(prev => {
+      prev.set("color", currentColor);
+      return prev;
+    });
   }
-}, [colore, dispatch]);
+}, [colore, dispatch, location.pathname]); // <-- added location.pathname
 
      const colorHandle = (colors,coulor) => {
  setSearchParams(prev =>{ prev.set("color" , coulor)
