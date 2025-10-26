@@ -57,7 +57,7 @@ useEffect(() => {
       setSearchParams({ color: "blue" });
     }
   }
-}, [colore]);
+}, [colore,location.pathname]);
    
   const handleClick = () => {
     dispatch(isOpen());
