@@ -15,19 +15,30 @@ export const Theme = () => {
   const colore = searchParams.get("color") ;
   const isopen = useSelector((state) => state.isopen.value);
   const dispatch = useDispatch();
-  const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
+  
 
 useEffect(() => {
-  if (validColors.includes(colore)) {
+  const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
+  const currentColorParam = colore;
+  const currentThemeColor = color[0]?.split("-")[1]; // ex: "text-blue-500" -> "blue"
+
+  if (validColors.includes(currentColorParam)) {
+    // ✅ If URL has valid color → update Redux store
     dispatch(themeMode([
-      `text-${colore}-500`,
-      `border-${colore}-500`,
-      `bg-${colore}-500`,
-      `hover:bg-${colore}-300`,
-      `bg-${colore}-300`,
-      `hover:text-${colore}-500`
+      `text-${currentColorParam}-500`,
+      `border-${currentColorParam}-500`,
+      `bg-${currentColorParam}-500`,
+      `hover:bg-${currentColorParam}-300`,
+      `bg-${currentColorParam}-300`,
+      `hover:text-${currentColorParam}-500`
     ]));
-  } else {
+  } 
+  else if (!currentColorParam && currentThemeColor) {
+    // ✅ No color in URL → keep the current Redux color
+    setSearchParams({ color: currentThemeColor });
+  } 
+  else if (!currentColorParam && !currentThemeColor) {
+    // ✅ First load → set default blue
     setSearchParams({ color: "blue" });
     dispatch(themeMode([
       `text-blue-500`,
@@ -37,6 +48,14 @@ useEffect(() => {
       `bg-blue-300`,
       `hover:text-blue-500`
     ]));
+  } 
+  else if (!validColors.includes(currentColorParam)) {
+    // ⚠️ Invalid color in URL → revert to previous Redux color
+    if (currentThemeColor) {
+      setSearchParams({ color: currentThemeColor });
+    } else {
+      setSearchParams({ color: "blue" });
+    }
   }
 }, [colore]);
    
