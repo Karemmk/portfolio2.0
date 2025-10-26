@@ -31,16 +31,21 @@ export const Theme = () => {
            `bg-blue-300`,
            `hover:text-blue-500`]))
     }
-       else
-    {
-    if(colore==='blue' || colore==='pink' || colore==='green' || colore==='red' || colore==='purple' || colore==='yellow' )
+       else if(colore==='blue' || colore==='pink' || colore==='green' || colore==='red' || colore==='purple' || colore==='yellow' )
         {
-        dispatch(themeMode([`text-${colore}-500`,`border-${colore}-500`,`bg-${colore}-500`,`hover:bg-${colore}-300`,`bg-${colore}-300`,`hover:text-${colore}-500`]))  
+        dispatch(themeMode(
+           [`text-${colore}-500`,
+            `border-${colore}-500`,
+            `bg-${colore}-500`,
+            `hover:bg-${colore}-300`,
+            `bg-${colore}-300`,
+            `hover:text-${colore}-500`
+           ]))  
         setSearchParams(prev =>{ prev.set("color" , colore)
   return prev
          });
     }
-       };
+       
       else
       {
          dispatch(themeMode(color));
