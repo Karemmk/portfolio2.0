@@ -23,9 +23,22 @@ export const Theme = () => {
   useEffect(() => {
   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
   const colorParam = searchParams.get("color");
-  const currentColor = color[0]?.split("-")[1] || "blue";
 
-  // ✅ Case 1: valid color in URL → apply it
+  // ✅ If there's no color in the URL, set blue and apply it
+  if (!colorParam) {
+    setSearchParams({ color: "blue" });
+    dispatch(themeMode([
+      "text-blue-500",
+      "border-blue-500",
+      "bg-blue-500",
+      "hover:bg-blue-300",
+      "bg-blue-300",
+      "hover:text-blue-500"
+    ]));
+    return;
+  }
+
+  // ✅ If color is valid → apply it
   if (validColors.includes(colorParam)) {
     dispatch(themeMode([
       `text-${colorParam}-500`,
@@ -35,25 +48,23 @@ export const Theme = () => {
       `bg-${colorParam}-300`,
       `hover:text-${colorParam}-500`
     ]));
+  } 
+  
+  // ❌ If invalid color → revert to previous or blue
+  else {
+    const previousColor = color[0]?.split("-")[1] || "blue";
+    setSearchParams({ color: previousColor });
+    dispatch(themeMode([
+      `text-${previousColor}-500`,
+      `border-${previousColor}-500`,
+      `bg-${previousColor}-500`,
+      `hover:bg-${previousColor}-300`,
+      `bg-${previousColor}-300`,
+      `hover:text-${previousColor}-500`
+    ]));
   }
-
-  // 🌀 Case 2: no color param → keep or set to current color
-  else if (!colorParam) {
-    setSearchParams(prev => {
-      prev.set("color", currentColor);
-      return prev;
-    });
-  }
-
-  // ❌ Case 3: invalid color → revert to current color
-  else if (!validColors.includes(colorParam)) {
-    setSearchParams(prev => {
-      prev.set("color", currentColor);
-      return prev;
-    });
-  }
-}, [colore, dispatch, location.pathname]); // <-- added location.pathname
-
+}, [location.pathname,colore,searchParams]); // only re-run on route change
+   
      const colorHandle = (colors,coulor) => {
  setSearchParams(prev =>{ prev.set("color" , coulor)
   return prev
