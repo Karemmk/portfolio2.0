@@ -27,7 +27,7 @@ export const Theme = () => {
   const currentColor = color[0]?.split("-")[1] || "blue";
 
   // ✅ Case 1: no color param → set default blue
-  if (!colorParam) {
+  if (!colorParam && !currentColor) {
     setSearchParams(prev => {
       prev.set("color", "blue");
       return prev;
@@ -40,7 +40,6 @@ export const Theme = () => {
       "bg-blue-300",
       "hover:text-blue-500"
     ]));
-    return;
   }
 
   // ✅ Case 2: valid color param → apply it
@@ -53,6 +52,10 @@ export const Theme = () => {
       `bg-${colorParam}-300`,
       `hover:text-${colorParam}-500`
     ]));
+     setSearchParams(prev => {
+      prev.set("color", colorParam);
+      return prev;
+    });
   }
 
   // ❌ Case 3: invalid color param → revert to previous valid color
