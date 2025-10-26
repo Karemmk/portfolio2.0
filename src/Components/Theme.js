@@ -16,11 +16,9 @@ export const Theme = () => {
   const isopen = useSelector((state) => state.isopen.value);
   const dispatch = useDispatch();
   
-
-useEffect(() => {
-useEffect(() => {
-  const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
-  const colorParam = searchParams.get("color");
+  useEffect(() => {
+   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
+   const colorParam = searchParams.get("color");
 
   // ✅ If URL color is valid → set it in Redux
   if (validColors.includes(colorParam)) {
