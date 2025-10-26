@@ -19,7 +19,7 @@ export const Theme = () => {
     dispatch(isOpen());
   };
    useEffect(() => {
-    if (!colore && !color) {
+    if (!colore && color===[]) {
       setSearchParams(prev =>{ prev.set("color" , "blue")
   return prev
          });
