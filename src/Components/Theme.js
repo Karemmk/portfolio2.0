@@ -15,58 +15,43 @@ export const Theme = () => {
   const colore = searchParams.get("color") ;
   const isopen = useSelector((state) => state.isopen.value);
   const dispatch = useDispatch();
+  const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
+
+useEffect(() => {
+  if (validColors.includes(colore)) {
+    dispatch(themeMode([
+      `text-${colore}-500`,
+      `border-${colore}-500`,
+      `bg-${colore}-500`,
+      `hover:bg-${colore}-300`,
+      `bg-${colore}-300`,
+      `hover:text-${colore}-500`
+    ]));
+  } else {
+    setSearchParams({ color: "blue" });
+    dispatch(themeMode([
+      `text-blue-500`,
+      `border-blue-500`,
+      `bg-blue-500`,
+      `hover:bg-blue-300`,
+      `bg-blue-300`,
+      `hover:text-blue-500`
+    ]));
+  }
+}, [colore]);
+   
   const handleClick = () => {
     dispatch(isOpen());
-  };
-   useEffect(() => {
-    if (!colore && color===[]) {
-      setSearchParams(prev =>{ prev.set("color" , "blue")
-  return prev
-         });
-       dispatch(themeMode(
-          [`text-blue-500`,
-           `border-blue-500`,
-           `bg-blue-500`,
-           `hover:bg-blue-300`,
-           `bg-blue-300`,
-           `hover:text-blue-500`]))
-    }
-       else if(colore==='blue' || colore==='pink' || colore==='green' || colore==='red' || colore==='purple' || colore==='yellow' )
-        {
-        dispatch(themeMode(
-           [`text-${colore}-500`,
-            `border-${colore}-500`,
-            `bg-${colore}-500`,
-            `hover:bg-${colore}-300`,
-            `bg-${colore}-300`,
-            `hover:text-${colore}-500`
-           ]))  
-        setSearchParams(prev =>{ prev.set("color" , colore)
-  return prev
-         });
-    }
-       
-      else
-      {
-         dispatch(themeMode(color));
-         setSearchParams(
-          prev =>
-          {
-         prev.set("color" , color[0].split("-")[1])
-         return prev
-          }
-         );
-      }  
-  }, [location.search,colore,location.pathname]);
-
+  }; 
+   
   const colorHandle = (colors,coulor) => {
  setSearchParams(prev =>{ prev.set("color" , coulor)
   return prev
   });
     dispatch(themeMode(colors))
-    
-  };
-  return (
+    };
+  
+   return (
     <div onClick={handleClick}>
       {isopen ? (
         <motion.div 
