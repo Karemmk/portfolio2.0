@@ -18,27 +18,24 @@ export const Theme = () => {
   
 
 useEffect(() => {
+useEffect(() => {
   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
-  const currentColorParam = colore;
-  const currentThemeColor = color[0]?.split("-")[1]; // ex: "text-blue-500" -> "blue"
+  const colorParam = searchParams.get("color");
 
-  if (validColors.includes(currentColorParam)) {
-    // ✅ If URL has valid color → update Redux store
+  // ✅ If URL color is valid → set it in Redux
+  if (validColors.includes(colorParam)) {
     dispatch(themeMode([
-      `text-${currentColorParam}-500`,
-      `border-${currentColorParam}-500`,
-      `bg-${currentColorParam}-500`,
-      `hover:bg-${currentColorParam}-300`,
-      `bg-${currentColorParam}-300`,
-      `hover:text-${currentColorParam}-500`
+      `text-${colorParam}-500`,
+      `border-${colorParam}-500`,
+      `bg-${colorParam}-500`,
+      `hover:bg-${colorParam}-300`,
+      `bg-${colorParam}-300`,
+      `hover:text-${colorParam}-500`
     ]));
-  } 
-  else if (!currentColorParam && currentThemeColor) {
-    // ✅ No color in URL → keep the current Redux color
-    setSearchParams({ color: currentThemeColor });
-  } 
-  else if (!currentColorParam && !currentThemeColor) {
-    // ✅ First load → set default blue
+  }
+
+  // 🌀 If URL has no color → set default blue
+  else if (!colorParam) {
     setSearchParams({ color: "blue" });
     dispatch(themeMode([
       `text-blue-500`,
@@ -48,16 +45,25 @@ useEffect(() => {
       `bg-blue-300`,
       `hover:text-blue-500`
     ]));
-  } 
-  else if (!validColors.includes(currentColorParam)) {
-    // ⚠️ Invalid color in URL → revert to previous Redux color
-    if (currentThemeColor) {
-      setSearchParams({ color: currentThemeColor });
-    } else {
-      setSearchParams({ color: "blue" });
-    }
   }
-}, [colore,location.pathname]);
+
+  // ❌ If URL has invalid color → fallback to previous valid color
+  else if (!validColors.includes(colorParam)) {
+    const prevColor = color[0]?.split("-")[1] || "blue";
+    setSearchParams({ color: prevColor });
+    dispatch(themeMode([
+      `text-${prevColor}-500`,
+      `border-${prevColor}-500`,
+      `bg-${prevColor}-500`,
+      `hover:bg-${prevColor}-300`,
+      `bg-${prevColor}-300`,
+      `hover:text-${prevColor}-500`
+    ]));
+  }
+
+  // ✅ Keep color param across route changes
+  // if you use `react-router-dom`, this ensures it persists
+}, [colore, dispatch]);
    
   const handleClick = () => {
     dispatch(isOpen());
