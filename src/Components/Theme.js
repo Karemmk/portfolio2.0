@@ -20,8 +20,8 @@ export const Theme = () => {
      dispatch(isOpen())
   };
   
+  
   useEffect(() => {
-  conuseEffect(() => {
   const validColors = ["blue", "pink", "green", "red", "purple", "yellow"];
   const colorParam = colore;
   const currentColor = color[0]?.split("-")[1] || "blue";
