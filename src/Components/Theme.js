@@ -40,8 +40,9 @@ export const Theme = () => {
   return prev
          });
     }
-       }
+       };
       else
+      {
          dispatch(themeMode(color));
          setSearchParams(
           prev =>
@@ -50,8 +51,7 @@ export const Theme = () => {
          return prev
           }
          );
-         
-      
+      }  
   }, [location.search,colore,location.pathname]);
 
   const colorHandle = (colors,coulor) => {
