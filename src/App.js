@@ -54,7 +54,7 @@ const App = () => {
               navopen
                 ? dark
                   ? "fixed  w-2/4 bg-gray-800 text-gray-200 pt-10 p-10 z-30"
-                  : "fixed flex-shrink-0 start-0  bg-white hover:w-[30%] pt-10 p-10 z-30"
+                  : "fixed start-0  bg-white hover:w-[30%] pt-10 p-10 z-30"
                 : dark
                 ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
                 : "hidden bg-white sm:w-1/4 sm:inline-block"
