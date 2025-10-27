@@ -36,7 +36,7 @@ const App = () => {
       <div 
       location={location}
       onClick={colseNav} 
-      className="relative no-scrollbar h-full">
+      className="relative h-full">
         <div className="flex">
           <Theme />
           <DarkMode />
@@ -54,7 +54,7 @@ const App = () => {
               navopen
                 ? dark
                   ? "fixed  w-2/4 bg-gray-800 text-gray-200 pt-10 p-10 z-30"
-                  : "fixed start-0 w-1/5 bg-white hover:w-2/5 pt-10 p-10 z-50"
+                  : "absolute start-0 w-1/5 bg-white hover:w-2/5 pt-10 p-10 z-50"
                 : dark
                 ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
                 : "hidden bg-white sm:w-1/4 sm:inline-block"
