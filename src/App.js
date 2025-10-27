@@ -54,7 +54,7 @@ const App = () => {
               navopen
                 ? dark
                   ? "fixed  w-2/4 bg-gray-800 text-gray-200 pt-10 p-10 z-30"
-                  : "fixed  start-0  bg-white w-2/4 hover:w-3/5 pt-10 p-10 z-30"
+                  : "fixed  start-0  bg-white w-2/6 hover:w-3/6 pt-10 p-10 z-30"
                 : dark
                 ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
                 : "hidden bg-white sm:w-1/4 sm:inline-block"
@@ -66,7 +66,7 @@ const App = () => {
             className={
               dark
                 ? "h-full overflow-hidden sm:w-3/4 bg-gray-900 text-gray-200 pb-20"
-                : "h-full overflow-hidden sm:w-3/4 sm:hover:w-5/5 bg-gray-200 pb-20"
+                : "h-full overflow-hidden sm:w-4/6 sm:hover:w-5/6 bg-gray-200 pb-20"
             }
           >
           
