@@ -66,7 +66,7 @@ const App = () => {
             className={
               dark
                 ? "h-full overflow-hidden sm:w-3/4 bg-gray-900 text-gray-200 pb-20"
-                : "h-full overflow-hidden sm:w-3/4 bg-gray-200 pb-20"
+                : "h-full overflow-hidden sm:w-3/4 hover:w-4/5 bg-gray-200 pb-20"
             }
           >
           
