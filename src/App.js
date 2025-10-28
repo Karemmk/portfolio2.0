@@ -48,7 +48,7 @@ const App = () => {
   key="nav"
   initial={{ width: 0 }}
   animate={navopen ? { width: "25%" } : { width: "0%" }}
-  whileHover={{ width: "30%" }}
+  whileHover={window.innerWidth >= 640 ? { width: "30%" } : {}}
   transition={{ duration: 0.35 }}
   className={
     // fixed so it overlays the content instead of pushing it
