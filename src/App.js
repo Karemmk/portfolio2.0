@@ -53,11 +53,11 @@ const App = () => {
             className={
            navopen
            ? dark
-           ? "fixed bg-gray-800 text-gray-200 pt-10 p-10 z-30"
-           : "absolute start-0 bg-white pt-10 p-10 z-50"
+           ? "fixed bg-gray-800 sm:w-1/6 text-gray-200 pt-10 p-10 z-30"
+           : "fixed start-0 bg-white sm:w-1/6 pt-10 p-10 z-50"
            : dark
-           ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
-           : "hidden bg-white sm:w-1/4 sm:inline-block"
+           ? "hidden sm:inline-block sm:w-1/6 bg-gray-800 text-gray-200"
+           : "hidden bg-white sm:w-1/6 sm:inline-block"
            }
            >
              <LeftSide onclick={() => setNavopen(false)} />
@@ -65,8 +65,8 @@ const App = () => {
             <div
             className={
               dark
-                ? "h-full overflow-hidden sm:w-3/4 bg-gray-900 text-gray-200 pb-20"
-                : "h-full overflow-hidden sm:w-4/5 bg-gray-200 pb-20"
+                ? "h-full overflow-hidden sm:w-5/6 bg-gray-900 text-gray-200 pb-20"
+                : "h-full overflow-hidden sm:w-5/6 bg-gray-200 pb-20"
             }
           >
           
