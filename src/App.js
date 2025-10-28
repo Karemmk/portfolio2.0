@@ -47,7 +47,7 @@ const App = () => {
           <motion.div
   key="nav"
   initial={{ width: 0 }}
-  animate={navopen ? { width: "20%" } : { width: "0%" }}
+  animate={navopen ? { width: "23%" } : { width: "0%" }}
   whileHover={{ width: "30%" }}
   transition={{ duration: 0.35 }}
   className={
@@ -55,10 +55,10 @@ const App = () => {
     navopen
       ? dark
         ? "fixed left-0 top-0 h-full z-40 bg-gray-800 text-gray-200 pt-10 p-10 block"
-        : "fixed left-0 top-0 h-full z-50 bg-white pt-10 p-10 block"
+        : "fixed left-0 top-0 h-full z-40 bg-white pt-10 p-10 block"
       : dark
-       ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
-       : "hidden bg-white sm:w-1/4 sm:inline-block"  
+       ? "hidden sm:inline-block w-1/4 h-2/4 bg-gray-800 text-gray-200"
+       : "hidden bg-white sm:inline-block w-1/4 h-2/4 "  
 }
 >
   <LeftSide onclick={() => setNavopen(false)} />
@@ -66,8 +66,8 @@ const App = () => {
             <div
   className={
     dark
-      ? "h-full overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
-      : "h-full overflow-hidden bg-gray-200 pb-20 w-full"
+      ? "h-full sm:pl-[20px] overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
+      : "h-full sm:pl-[20px] overflow-hidden bg-gray-200 pb-20 w-full"
   }
 >
   {info ? <RightSide /> : <div className="fixed font-bold ml-[40%] mt-[20%]">Loading ...</div>}
