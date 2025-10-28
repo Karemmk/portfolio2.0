@@ -57,9 +57,9 @@ const App = () => {
         ? "fixed left-0 top-0 h-full z-40 bg-gray-800 text-gray-200 pt-10 p-10 block"
         : "fixed left-0 top-0 h-full z-50 bg-white pt-10 p-10 block"
       : dark
-      ? "hidden sm:block sm:fixed sm:left-0 sm:top-0 sm:h-full sm:z-40 sm:bg-gray-800 sm:text-gray-200 sm:pt-10 sm:p-10"
-      : "hidden sm:block sm:fixed sm:left-0 sm:top-0 sm:h-full sm:z-50 sm:bg-white sm:pt-10 sm:p-10"
-  }
+       ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
+       : "hidden bg-white sm:w-1/4 sm:inline-block"  
+}
 >
   <LeftSide onclick={() => setNavopen(false)} />
 </motion.div>
