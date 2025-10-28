@@ -47,7 +47,7 @@ const App = () => {
           <motion.div
   key="nav"
   initial={{ width: 0 }}
-  animate={navopen ? { width: "25%" } : { width: "0%" }}
+  animate={navopen ? { width: "35%" } : { width: "0%" }}
   whileHover={window.innerWidth >= 640 ? { width: "30%" } : {}}
   transition={{ duration: 0.35 }}
   className={
