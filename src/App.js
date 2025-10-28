@@ -47,7 +47,7 @@ const App = () => {
           <motion.div
   key="nav"
   initial={{ width: 0 }}
-  animate={navopen ? { width: "23%" } : { width: "0%" }}
+  animate={navopen ? { width: "25%" } : { width: "0%" }}
   whileHover={{ width: "30%" }}
   transition={{ duration: 0.35 }}
   className={
@@ -66,8 +66,8 @@ const App = () => {
             <div
   className={
     dark
-      ? "h-full sm:pl-[30px] overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
-      : "h-full sm:pl-[30px] overflow-hidden bg-gray-200 pb-20 w-full"
+      ? "h-full sm:pl-[60px] overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
+      : "h-full sm:pl-[60px] overflow-hidden bg-gray-200 pb-20 w-full"
   }
 >
   {info ? <RightSide /> : <div className="fixed font-bold ml-[40%] mt-[20%]">Loading ...</div>}
