@@ -12,9 +12,9 @@ export const LeftSide = () => {
           <div
             className={`absolute mr-[10px] w-5 h-5 ${color}  border-t-8 border-l-8`}
           ></div>
-          <div className="ml-[8px] mt-2 text-lg ">KaRem</div>
+          <div className="ml-[7px] mt-2 text-lg ">KaRem</div>
           <div
-            className={`absolute ml-[50px] w-5 h-5 ${color} border-b-8 border-r-8 mt-5 lg:mt-12`}
+            className={`absolute ml-[52px] w-5 h-5 ${color} border-b-8 border-r-8 mt-5 lg:mt-12`}
           ></div>
         </div>
         <div>
