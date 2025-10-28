@@ -45,23 +45,23 @@ const App = () => {
             className={`fixed sm:hidden ${color[0]} hover:text-gray-600 z-40 w-10 h-10 mt-2 ml-3 cursor-pointer`}
           />
           <motion.div
-            key= "nav"
-            initial={   { width : 0 } }
-            whileInView={ navopen? { width : 200} : { width : 400}  }
-            exit={  {width : 0} }
+            key="nav"
+            initial={{ width: 0 }}
+            whileHover={{ width: "30%" }}
+            animate={navopen ? { width: "20%" } : { width: "25%" }}
             transition={{ duration: 0.5 }}
             className={
-              navopen
-                ? dark
-                  ? "fixed  w-2/4 bg-gray-800 text-gray-200 pt-10 p-10 z-30"
-                  : "absolute start-0 w-[20%] hover:w-[30%] bg-white pt-10 p-10 z-50 transition-all duration-500 ease-in-out"
-                : dark
-                ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
-                : "hidden bg-white sm:w-1/4 sm:inline-block"
-            }
-          >
-            <LeftSide onclick={() => setNavopen(false)} />
-          </motion.div>
+           navopen
+           ? dark
+           ? "fixed bg-gray-800 text-gray-200 pt-10 p-10 z-30"
+           : "absolute start-0 bg-white pt-10 p-10 z-50"
+           : dark
+           ? "hidden sm:inline-block sm:w-1/4 bg-gray-800 text-gray-200"
+           : "hidden bg-white sm:w-1/4 sm:inline-block"
+           }
+           >
+             <LeftSide onclick={() => setNavopen(false)} />
+        </motion.div>
             <div
             className={
               dark
