@@ -45,33 +45,33 @@ const App = () => {
             className={`fixed sm:hidden ${color[0]} hover:text-gray-600 z-40 w-10 h-10 mt-2 ml-3 cursor-pointer`}
           />
           <motion.div
-            key="nav"
-            initial={{ width: 0 }}
-            whileHover={{ width: "30%" }}
-            animate={navopen ? { width: "20%" } : { width: "25%" }}
-            transition={{ duration: 0.5 }}
-            className={
-           navopen
-           ? dark
-           ? "fixed bg-gray-800 sm:w-1/6 text-gray-200 pt-10 p-10 z-30"
-           : "fixed start-0 bg-white sm:w-1/6 pt-10 p-10 z-50"
-           : dark
-           ? "hidden sm:inline-block sm:w-1/6 bg-gray-800 text-gray-200"
-           : "hidden bg-white sm:w-1/6 sm:inline-block"
-           }
-           >
-             <LeftSide onclick={() => setNavopen(false)} />
-        </motion.div>
+  key="nav"
+  initial={{ width: 0 }}
+  animate={navopen ? { width: "20%" } : { width: "0%" }}
+  whileHover={{ width: "30%" }}
+  transition={{ duration: 0.35 }}
+  className={
+    // fixed so it overlays the content instead of pushing it
+    navopen
+      ? dark
+        ? "fixed left-0 top-0 h-full z-40 bg-gray-800 text-gray-200 pt-10 p-10 block"
+        : "fixed left-0 top-0 h-full z-50 bg-white pt-10 p-10 block"
+      : dark
+      ? "hidden sm:block sm:fixed sm:left-0 sm:top-0 sm:h-full sm:z-40 sm:bg-gray-800 sm:text-gray-200 sm:pt-10 sm:p-10"
+      : "hidden sm:block sm:fixed sm:left-0 sm:top-0 sm:h-full sm:z-50 sm:bg-white sm:pt-10 sm:p-10"
+  }
+>
+  <LeftSide onclick={() => setNavopen(false)} />
+</motion.div>
             <div
-            className={
-              dark
-                ? "h-full overflow-hidden sm:w-5/6 bg-gray-900 text-gray-200 pb-20"
-                : "h-full overflow-hidden sm:w-5/6 bg-gray-200 pb-20"
-            }
-          >
-          
-          {info ? <RightSide /> : <div className="fixed font-bold ml-[40%] mt-[20%]">Loading ...</div>}
-          </div>
+  className={
+    dark
+      ? "h-full overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
+      : "h-full overflow-hidden bg-gray-200 pb-20 w-full"
+  }
+>
+  {info ? <RightSide /> : <div className="fixed font-bold ml-[40%] mt-[20%]">Loading ...</div>}
+</div>
         </div>
       </div>
   );
