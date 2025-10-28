@@ -66,8 +66,8 @@ const App = () => {
             <div
   className={
     dark
-      ? "h-full sm:pl-[100px] overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
-      : "h-full sm:pl-[100px] overflow-hidden bg-gray-200 pb-20 w-full"
+      ? "h-full sm:pl-[80px] overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
+      : "h-full sm:pl-[80px] overflow-hidden bg-gray-200 pb-20 w-full"
   }
 >
   {info ? <RightSide /> : <div className="fixed font-bold ml-[40%] mt-[20%]">Loading ...</div>}
