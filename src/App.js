@@ -42,7 +42,7 @@ const App = () => {
           <DarkMode />
           <FaListAlt
             onClick={minNav}
-            className={`fixed sm:hidden ${color[0]} hover:text-gray-600 z-40 w-10 h-10 mt-2 ml-3 cursor-pointer`}
+            className={`fixed sm:hidden ${color[0]} hover:text-gray-600 z-50 w-10 h-10 mt-2 ml-3 cursor-pointer`}
           />
           <motion.div
   key="nav"
@@ -66,8 +66,8 @@ const App = () => {
             <div
   className={
     dark
-      ? "h-full sm:pl-[60px] overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
-      : "h-full sm:pl-[60px] overflow-hidden bg-gray-200 pb-20 w-full"
+      ? "h-full sm:pl-[100px] overflow-hidden bg-gray-900 text-gray-200 pb-20 w-full"
+      : "h-full sm:pl-[100px] overflow-hidden bg-gray-200 pb-20 w-full"
   }
 >
   {info ? <RightSide /> : <div className="fixed font-bold ml-[40%] mt-[20%]">Loading ...</div>}
