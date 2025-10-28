@@ -10,11 +10,11 @@ export const LeftSide = () => {
       <div className="md:h-full grid grid-cols-1  sm:gap-40 mt-8 justify-items-center ">
         <div className="flex font-bold font-9">
           <div
-            className={`absolute mr-[5px] w-5 h-5 ${color}  border-t-8 border-l-8`}
+            className={`absolute mr-[10px] w-5 h-5 ${color}  border-t-8 border-l-8`}
           ></div>
           <div className="mt-2 text-lg ">KaRem</div>
           <div
-            className={`absolute ml-[20px] w-5 h-5 ${color} border-b-8 border-r-8 mt-5 lg:mt-12`}
+            className={`absolute ml-[30px] w-5 h-5 ${color} border-b-8 border-r-8 mt-5 lg:mt-12`}
           ></div>
         </div>
         <div>
