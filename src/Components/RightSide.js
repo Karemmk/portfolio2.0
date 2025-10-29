@@ -16,6 +16,7 @@ export const RightSide = () => {
   return (
      <div>
       <AnimatePresence>
+       <ScrollRestoration />
        <Routes location={location} key={location.pathname}>
         <ScrollRestoration />
         <Route  path="" element={<Home />} />
