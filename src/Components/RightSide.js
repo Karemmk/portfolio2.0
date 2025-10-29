@@ -20,7 +20,6 @@ export const RightSide = () => {
      <div>
       <AnimatePresence>
        <Routes location={location} key={location.pathname}>
-        <ScrollRestoration />
         <Route  path="" element={<Home />} />
         <Route  path="about" element={<About />} />
         <Route  path="services" element={<Services />} />
