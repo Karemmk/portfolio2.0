@@ -5,7 +5,7 @@ import Services from "./Pages/Services";
 import Skills from "./Pages/Skills";
 import Contact from "./Pages/Contact";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes , Route ,useLocation ,scrollRestoration } from "react-router-dom";
+import { Routes , Route ,useLocation ,ScrollRestoration } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"
 
 export const RightSide = () => {
