@@ -5,18 +5,20 @@ import Services from "./Pages/Services";
 import Skills from "./Pages/Skills";
 import Contact from "./Pages/Contact";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes , Route ,useLocation ,ScrollRestoration } from "react-router-dom";
+import { Routes , Route ,useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"
 
 export const RightSide = () => {
   const color = useSelector((state) => state.theme.value[0]);
   const location = useLocation();
-  
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]); 
 
   return (
      <div>
       <AnimatePresence>
-       <ScrollRestoration />
        <Routes location={location} key={location.pathname}>
         <ScrollRestoration />
         <Route  path="" element={<Home />} />
